@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%= @user.age %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @user.content %>
+</p>
+
+<h2>Groups:</h2>
+<table>
+<tr>
+    <th>GroupName</th>
+    <th>Description</th>
+</tr>
+<% @user.groups.each do |group| %>
+<tr>
+    <td><%= group.groupName %></td>
+    <td><%= group.desc %></td>
+</tr>   
+<% end %> 
+</table>
+
+<h2>Add a group:</h2>
+<%= form_for([@user,@user.groups.build]) do |f| %>
+<div class="field">
+	<%= f.label :groupName %><br />
+	<%= f.text_field :groupName %>
+</div>
+<div class="field">
+	<%= f.label :desc %><br />
+	<%= f.text_area :desc %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
